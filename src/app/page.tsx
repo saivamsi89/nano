@@ -91,29 +91,13 @@ function Hero() {
           </dl>
         </div>
 
-        {/* Floating board + quote teaser */}
+        {/* Floating premium board */}
         <div className="relative">
-          <div className="absolute -inset-8 rounded-[2.5rem] bg-brand-500/15 blur-3xl" />
+          <div className="absolute -inset-10 rounded-[3rem] bg-brand-500/15 blur-3xl" />
           <div className="relative rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.01] p-3 shadow-2xl backdrop-blur-sm">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink-950/60 ring-1 ring-white/5">
               <HeroBoard />
             </div>
-          </div>
-
-          <div className="absolute -bottom-6 -left-6 hidden w-60 rounded-2xl border border-white/10 bg-ink-900/90 p-4 shadow-xl backdrop-blur sm:block">
-            <div className="flex items-center gap-2 text-xs text-ink-300">
-              <Timer className="h-4 w-4 text-brand-500" /> Live quote
-            </div>
-            <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-sm text-ink-200">4-layer · 10 pcs</span>
-              <span className="font-display text-lg font-bold text-brand-400">
-                ₹799
-              </span>
-            </div>
-            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-3/4 rounded-full bg-brand-500" />
-            </div>
-            <p className="mt-2 text-[11px] text-ink-400">Dispatch in 5–6 days</p>
           </div>
         </div>
       </Container>
