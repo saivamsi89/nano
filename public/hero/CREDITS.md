@@ -1,2 +1,1 @@
-hero/pcb-hero.jpg — photo from Unsplash (free to use, no attribution required).
-Demo placeholder for the hero background; swap with NanoFab's own board photo for production.
+hero/aurora-hero.jpg — AI-generated board visual provided by NanoFab. Used as the homepage hero background.

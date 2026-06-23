@@ -42,8 +42,8 @@ function Hero() {
     <section className="relative isolate overflow-hidden bg-ink-950 text-white">
       {/* Full-bleed board photograph */}
       <Image
-        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/hero/pcb-hero.jpg`}
-        alt="High-density printed circuit board macro"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/hero/aurora-hero.jpg`}
+        alt="NanoFab AURORA advanced processor board in the lab"
         fill
         priority
         sizes="100vw"
