@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
+/*
+  NanoFab brand system
+  - ink: deep navy from the logo wordmark
+  - brand: vivid green from the logo
+*/
+@theme {
+  --color-ink-950: #07071a;
+  --color-ink-900: #0b0b23;
+  --color-ink-800: #12122e;
+  --color-ink-700: #1b1b3d;
+  --color-ink-600: #272750;
+  --color-ink-500: #3a3a6b;
+  --color-ink-400: #6b6b94;
+  --color-ink-300: #9a9ab8;
+  --color-ink-200: #c8c8db;
+  --color-ink-100: #e8e8f0;
+  --color-ink-50: #f5f5fa;
+
+  --color-brand-700: #15803d;
+  --color-brand-600: #16a34a;
+  --color-brand-500: #22c55e;
+  --color-brand-400: #4ade80;
+  --color-brand-300: #86efac;
+  --color-brand-200: #bbf7d0;
+  --color-brand-100: #dcfce7;
+  --color-brand-50: #f0fdf4;
+
+  --font-display: var(--font-sora);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+
+  --shadow-card: 0 1px 2px rgba(11, 11, 35, 0.04), 0 8px 24px -12px rgba(11, 11, 35, 0.12);
+  --shadow-lift: 0 1px 2px rgba(11, 11, 35, 0.06), 0 18px 40px -16px rgba(11, 11, 35, 0.22);
+
+  --radius-xl2: 1.25rem;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #0b0b23;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection + focus polish */
+::selection {
+  background: var(--color-brand-500);
+  color: var(--color-ink-950);
+}
+
+/* Subtle grid backdrop used in hero / feature blocks */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(11, 11, 35, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 11, 35, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Animated marquee for the trust bar */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Hero board: flowing copper current + pulsing indicator */
+@keyframes hb-dash {
+  to { stroke-dashoffset: -44; }
+}
+.hb-flow {
+  stroke-dasharray: 5 18;
+  animation: hb-dash 1.1s linear infinite;
+}
+@keyframes hb-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.hb-pulse {
+  animation: hb-pulse 1.6s ease-in-out infinite;
+}
+
+/* Scroll-reveal */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hb-flow, .hb-pulse, .animate-float-slow, .animate-marquee { animation: none !important; }
+}
+
+html {
+  scroll-behavior: smooth;
 }

@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NanoFab — Website
 
-## Getting Started
+Marketing site + component shop + instant PCB quote tool for **NanoFab**, a
+precision PCB fabrication, assembly and component-sourcing company.
 
-First, run the development server:
+Built to look and perform a notch above the reference site (lioncircuits.com),
+using the NanoFab brand: deep navy `#0B0B23` + vivid green `#22C55E`.
+
+## Tech stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router) + React 19 + TypeScript |
+| Styling | Tailwind CSS v4 (CSS-based theme in `globals.css`) |
+| Cart state | Zustand (persisted to localStorage) |
+| Icons | lucide-react |
+| Fonts | Sora (display), Inter (body), JetBrains Mono (specs) |
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm start        # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | What it is |
+|---|---|
+| `/` | Home — hero, services, offer, featured boards, capabilities, process, industries, testimonials |
+| `/services` | Fabrication / Assembly / Sourcing detail |
+| `/capabilities` | Full spec & materials & certs matrix |
+| `/industries` | Sectors served |
+| `/shop` | Component shop with category filter |
+| `/shop/[slug]` | Product detail (8 boards, statically generated) |
+| `/cart` | Cart + mock checkout (Zustand) |
+| `/quote` | **Instant quote tool** with live mock pricing engine |
+| `/about` | Story, values, contact form |
+| `/resources` | Guides + downloads |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## What's real vs. mocked (this is a client-verification demo)
 
-## Learn More
+**Real & working:** all pages, navigation, responsive design, the component
+shop, add-to-cart, cart math (GST + shipping), and the instant-quote
+calculator (live price + lead time from `src/lib/quote.ts`).
 
-To learn more about Next.js, take a look at the following resources:
+**Mocked for the demo (Phase 2 work):**
+- Checkout → wire to **Razorpay** (UPI/cards/netbanking)
+- Auth → **NextAuth/Clerk**
+- Persistence → **Prisma + Postgres** (Neon/Supabase)
+- Contact/quote forms → **Resend** email + CRM
+- Real fabrication pricing → replace coefficients in `src/lib/quote.ts`
+- BOM upload parsing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Board images
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The catalog uses **clean, consistent product illustrations** rendered as SVG
+(`src/lib/product-art.ts` + `src/components/product-render.tsx`) — flat-with-depth
+PCB renders on a near-white surface, the deliberate "parts store" aesthetic
+(uniform across every card, unlike inconsistent stock photos).
 
-## Deploy on Vercel
+Each product's look is chosen by its `category` (Dev Board / Module / Sensor /
+PCB Kit). To swap in NanoFab's own **studio product photos** later, replace
+`<ProductRender .../>` with a `next/image` and a file under `public/boards/`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The live quote-tool preview (`src/components/pcb-graphic.tsx`) is a separate
+dynamic SVG that updates with the selected colour/specs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Suggested AI image prompts (Midjourney / DALL·E / Firefly)
+
+> "Professional product photograph of a green printed circuit board with a
+> central black microcontroller chip, gold-plated edge connectors, fine copper
+> traces and SMD components, top-down 3/4 view, soft studio lighting, clean white
+> background, ultra sharp, high detail, no text, no price." — vary the solder-mask
+> colour (navy / black) per product.
+
+## Deploy
+
+The app is a full Next.js app (server features ready for Phase 2). Recommended:
+
+- **GitHub repo → Vercel** (auto-deploy, free tier, full stack). Best path.
+- Later: AWS / managed Postgres when scaling.
+
+> Note: plain **GitHub Pages can't run** the cart/quote/checkout because it's
+> static-only. Use Vercel for a live working demo link.
