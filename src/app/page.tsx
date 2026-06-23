@@ -124,14 +124,11 @@ function Hero() {
 /* ------------------------------------------------------------- Trust bar */
 function TrustBar() {
   const logos = [
-    "Robotics Labs",
-    "Volt Mobility",
-    "Helios Energy",
-    "MedSense",
-    "AeroDyne",
-    "GridWorks",
-    "IoT Foundry",
-    "Pulse Automotive",
+    "PHYSITECH Electronics",
+    "Swan Environmental",
+    "E-NNOVATE",
+    "IBS Global",
+    "International Innovation Summit",
   ];
   return (
     <section className="border-y border-ink-100 bg-white py-8">

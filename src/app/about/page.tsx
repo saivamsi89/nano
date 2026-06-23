@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone, Target, Eye, Gauge } from "lucide-react";
+import { Mail, MapPin, Target, Eye, Gauge } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -18,7 +18,7 @@ const values = [
 ];
 
 const stats = [
-  { k: "2019", v: "Founded in Bengaluru" },
+  { k: "Amaravati", v: "Engineered in" },
   { k: "12,000+", v: "Boards delivered" },
   { k: "600+", v: "Hardware teams served" },
   { k: "18", v: "Countries shipped to" },
@@ -42,7 +42,7 @@ export default function AboutPage() {
               description="NanoFab started when our founders—hardware engineers themselves—kept losing weeks to opaque quotes and slow turnarounds. So we built the manufacturer we wished we had: instant pricing, free DFM, and a factory obsessed with reliability."
             />
             <p className="mt-4 leading-relaxed text-ink-500">
-              Today our Bengaluru facility runs calibrated fabrication and
+              Today our Vijayawada facility runs calibrated fabrication and
               assembly lines with full inspection coverage, serving startups
               and enterprises across medical, mobility, energy and defence.
             </p>
@@ -99,14 +99,11 @@ export default function AboutPage() {
                 description="Questions on a stack-up, a BOM or a production plan? We usually reply within a few hours."
               />
               <ul className="mt-8 space-y-4 text-sm">
-                <li className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-brand-500" /> NanoFab Technologies, Bengaluru, Karnataka 560001
+                <li className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-500" /> Nano Fab Innovations Pvt. Ltd., Beside Co-operative Bank, Main Road, Ajith Singh Nagar, Vijayawada 520015
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-brand-500" /> hello@nanofab.in
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-brand-500" /> +91 80 4000 1234
+                  <Mail className="h-5 w-5 text-brand-500" /> reachus@nanofab.in
                 </li>
               </ul>
             </div>

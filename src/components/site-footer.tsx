@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/ui/container";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const columns = [
   {
@@ -44,20 +44,17 @@ export function SiteFooter() {
             <Logo variant="light" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">
               Precision PCB fabrication, assembly and component sourcing for
-              hardware teams. Engineered in India, shipped worldwide.
+              hardware teams. Your future, engineered in Amaravati.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
-              <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-brand-500" />
-                Bengaluru, Karnataka, India
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                Beside Co-operative Bank, Main Road, Ajith Singh Nagar,
+                Vijayawada 520015
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-brand-500" />
-                hello@nanofab.in
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-brand-500" />
-                +91 80 4000 1234
+                reachus@nanofab.in
               </li>
             </ul>
           </div>
@@ -85,7 +82,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-ink-400">
-            © {new Date().getFullYear()} NanoFab Technologies Pvt. Ltd. All rights reserved.
+            © {new Date().getFullYear()} Nano Fab Innovations Pvt. Ltd. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-2">
             {payments.map((p) => (
