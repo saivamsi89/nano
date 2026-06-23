@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   CircuitBoard,
@@ -15,7 +16,6 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading, Eyebrow } from "@/components/ui/section-heading";
 import { ProductRender } from "@/components/product-render";
-import { HeroBoard } from "@/components/hero-board";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { BoardCard } from "@/components/shop/board-card";
@@ -39,19 +39,30 @@ export default function HomePage() {
 /* ----------------------------------------------------------------- Hero */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-ink-950 text-white">
-      <div className="absolute inset-0 bg-grid-dark opacity-60" />
-      <div className="absolute -left-40 top-0 h-[480px] w-[480px] rounded-full bg-brand-500/20 blur-[120px]" />
-      <div className="absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-brand-700/20 blur-[120px]" />
+    <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+      {/* Full-bleed board photograph */}
+      <Image
+        src="/hero/pcb-hero.jpg"
+        alt="High-density printed circuit board macro"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-10 object-cover object-center"
+      />
+      {/* Legibility + brand grading overlays */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/30" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/70" />
+      <div className="absolute inset-0 -z-10 bg-ink-950/40 lg:bg-transparent" />
+      <div className="absolute -right-32 top-1/4 -z-10 h-[420px] w-[420px] rounded-full bg-brand-500/15 blur-[120px]" />
 
-      <Container className="relative grid items-center gap-14 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
-        <div>
+      <Container className="relative py-24 sm:py-28 lg:py-36">
+        <div className="max-w-2xl">
           <Eyebrow tone="dark">India&apos;s precision PCB partner</Eyebrow>
           <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             From schematic to{" "}
             <span className="text-brand-500">shipped boards</span>—without the wait.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-200">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-100">
             NanoFab fabricates, assembles and sources components for high-reliability
             electronics. Get a transparent online quote in seconds, then let our
             factory handle the rest—2 to 22 layers, prototype to production.
@@ -65,7 +76,7 @@ function Hero() {
               href="/shop"
               size="lg"
               variant="outline"
-              className="border-white/20 text-white hover:border-white hover:bg-white/5"
+              className="border-white/25 bg-white/5 text-white backdrop-blur-sm hover:border-white hover:bg-white/10"
             >
               Browse the shop
             </ButtonLink>
@@ -85,20 +96,10 @@ function Hero() {
                     suffix={s.suffix}
                   />
                 </dt>
-                <dd className="mt-1 text-xs text-ink-300 sm:text-sm">{s.v}</dd>
+                <dd className="mt-1 text-xs text-ink-200 sm:text-sm">{s.v}</dd>
               </div>
             ))}
           </dl>
-        </div>
-
-        {/* Floating premium board */}
-        <div className="relative">
-          <div className="absolute -inset-10 rounded-[3rem] bg-brand-500/15 blur-3xl" />
-          <div className="relative rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.01] p-3 shadow-2xl backdrop-blur-sm">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink-950/60 ring-1 ring-white/5">
-              <HeroBoard />
-            </div>
-          </div>
         </div>
       </Container>
     </section>
