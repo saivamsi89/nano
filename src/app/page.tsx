@@ -42,7 +42,7 @@ function Hero() {
     <section className="relative isolate overflow-hidden bg-ink-950 text-white">
       {/* Full-bleed board photograph */}
       <Image
-        src="/hero/pcb-hero.jpg"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/hero/pcb-hero.jpg`}
         alt="High-density printed circuit board macro"
         fill
         priority

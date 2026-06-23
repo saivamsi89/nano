@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   trailingSlash: true, // emit /shop/index.html so Pages serves clean URLs
   images: { unoptimized: true },
   basePath,
+  // exposed so we can prefix /public asset URLs (next/image doesn't add basePath
+  // to plain string srcs under static export)
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 
 export default nextConfig;
