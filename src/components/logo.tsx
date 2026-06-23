@@ -10,10 +10,12 @@ export function Logo({
   className,
   variant = "dark",
   uid = "nf",
+  showMark = true,
 }: {
   className?: string;
   variant?: "dark" | "light";
   uid?: string;
+  showMark?: boolean;
 }) {
   return (
     <Link
@@ -21,10 +23,12 @@ export function Logo({
       aria-label="NanoFab home"
       className={cn("group flex items-center gap-2.5 select-none", className)}
     >
-      <LogoMark
-        uid={uid}
-        className="h-8 w-8 transition-transform duration-300 group-hover:scale-105"
-      />
+      {showMark && (
+        <LogoMark
+          uid={uid}
+          className="h-8 w-8 transition-transform duration-300 group-hover:scale-105"
+        />
+      )}
       <span className="font-display text-2xl font-extrabold tracking-tight lowercase">
         <span className={variant === "light" ? "text-white" : "text-ink-900"}>
           nano
