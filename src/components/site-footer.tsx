@@ -41,7 +41,7 @@ export function SiteFooter() {
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Logo variant="light" />
+            <Logo variant="light" uid="ftr" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">
               Precision PCB fabrication, assembly and component sourcing for
               hardware teams. Your future, engineered in Amaravati.

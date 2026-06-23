@@ -3,6 +3,7 @@ import { Sora, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { TopLoader } from "@/components/top-loader";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -56,6 +57,7 @@ export default function RootLayout({
       className={`${sora.variable} ${inter.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-ink-900">
+        <TopLoader />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
