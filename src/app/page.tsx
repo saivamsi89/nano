@@ -15,7 +15,6 @@ import {
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading, Eyebrow } from "@/components/ui/section-heading";
-import { ProductRender } from "@/components/product-render";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { BoardCard } from "@/components/shop/board-card";
@@ -266,14 +265,23 @@ function Capabilities() {
           </div>
 
           <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink-100 shadow-lift">
-              <ProductRender category="Module" id="cap-board" />
+            <div className="absolute -inset-6 rounded-[2.5rem] bg-brand-500/10 blur-3xl" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-ink-950 shadow-lift">
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/capabilities.jpg`}
+                alt="Inspected printed circuit board on a calibrated line"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/10 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
             </div>
-            <div className="absolute -bottom-5 right-6 rounded-2xl border border-ink-100 bg-white px-5 py-4 shadow-lift">
-              <div className="flex items-center gap-2 text-xs font-medium text-ink-500">
-                <ShieldCheck className="h-4 w-4 text-brand-600" /> Quality assured
+            <div className="absolute -bottom-5 right-6 rounded-2xl border border-white/10 bg-ink-900/90 px-5 py-4 shadow-xl backdrop-blur">
+              <div className="flex items-center gap-2 text-xs font-medium text-ink-300">
+                <ShieldCheck className="h-4 w-4 text-brand-500" /> Quality assured
               </div>
-              <div className="mt-1 font-display text-lg font-bold text-ink-900">
+              <div className="mt-1 font-display text-lg font-bold text-white">
                 AOI · X-ray · E-test
               </div>
             </div>
