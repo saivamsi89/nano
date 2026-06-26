@@ -29,13 +29,10 @@ const columns = [
     links: [
       { label: "Instant Quote", href: "/quote" },
       { label: "Component Shop", href: "/shop" },
-      { label: "Upload BOM", href: "/quote" },
       { label: "Contact Sales", href: "/about" },
     ],
   },
 ];
-
-const payments = ["UPI", "VISA", "Mastercard", "RuPay", "NetBanking", "Wallets"];
 
 export function SiteFooter() {
   return (
@@ -43,7 +40,7 @@ export function SiteFooter() {
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Logo variant="light" uid="ftr" showMark />
+            <Logo variant="light" uid="ftr" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">
               Precision PCB fabrication, assembly and component sourcing for
               hardware teams. Your future, engineered in Amaravati.
@@ -92,19 +89,8 @@ export function SiteFooter() {
               className="h-9 w-auto opacity-90"
             />
             <p className="text-xs text-ink-400">
-              © {new Date().getFullYear()} Nano Fab Innovations Pvt. Ltd.
-              <br className="hidden sm:block" /> All rights reserved.
+              © {new Date().getFullYear()} Nano Fab Innovations Pvt. Ltd. All rights reserved.
             </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {payments.map((p) => (
-              <span
-                key={p}
-                className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-ink-200"
-              >
-                {p}
-              </span>
-            ))}
           </div>
         </div>
       </Container>
