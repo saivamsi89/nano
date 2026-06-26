@@ -59,17 +59,6 @@ export function SiteFooter() {
                 reachus@nanofab.in
               </li>
             </ul>
-
-            {/* Make in India trust seal */}
-            <div className="mt-7 border-t border-white/10 pt-6">
-              <Image
-                src={`${BASE}/brand/make-in-india.png`}
-                alt="Make in India"
-                width={600}
-                height={274}
-                className="h-14 w-auto opacity-90"
-              />
-            </div>
           </div>
 
           {columns.map((col) => (
@@ -94,9 +83,19 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-ink-400">
-            © {new Date().getFullYear()} Nano Fab Innovations Pvt. Ltd. All rights reserved.
-          </p>
+          <div className="flex items-center gap-4">
+            <Image
+              src={`${BASE}/brand/make-in-india.png`}
+              alt="Make in India"
+              width={600}
+              height={274}
+              className="h-9 w-auto opacity-90"
+            />
+            <p className="text-xs text-ink-400">
+              © {new Date().getFullYear()} Nano Fab Innovations Pvt. Ltd.
+              <br className="hidden sm:block" /> All rights reserved.
+            </p>
+          </div>
           <div className="flex flex-wrap items-center gap-2">
             {payments.map((p) => (
               <span
