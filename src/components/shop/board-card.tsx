@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ProductRender } from "@/components/product-render";
-import { ProductImage } from "@/components/shop/product-image";
+import { CardCarousel } from "@/components/shop/card-carousel";
 import { AddToCart } from "@/components/shop/add-to-cart";
 import type { Product } from "@/lib/boards";
 
@@ -12,17 +12,13 @@ export function BoardCard({ product }: { product: Product }) {
         href={`/shop/${product.slug}`}
         className="relative block aspect-[4/3] overflow-hidden border-b border-ink-100 bg-white"
       >
-        <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
-          {product.image ? (
-            <div className="absolute inset-0 p-4">
-              <div className="relative h-full w-full">
-                <ProductImage slug={product.slug} alt={product.name} />
-              </div>
-            </div>
-          ) : (
+        {product.image ? (
+          <CardCarousel slug={product.slug} name={product.name} />
+        ) : (
+          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
             <ProductRender category={product.category} id={product.slug} />
-          )}
-        </div>
+          </div>
+        )}
         {product.badge && (
           <span className="absolute left-3 top-3 rounded-md bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-ink-700 shadow-sm ring-1 ring-ink-100">
             {product.badge}
