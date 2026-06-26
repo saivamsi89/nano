@@ -1,7 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/ui/container";
 import { Mail, MapPin } from "lucide-react";
+
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const columns = [
   {
@@ -56,6 +59,17 @@ export function SiteFooter() {
                 reachus@nanofab.in
               </li>
             </ul>
+
+            {/* Make in India trust seal */}
+            <div className="mt-7 border-t border-white/10 pt-6">
+              <Image
+                src={`${BASE}/brand/make-in-india.png`}
+                alt="Make in India"
+                width={600}
+                height={274}
+                className="h-14 w-auto opacity-90"
+              />
+            </div>
           </div>
 
           {columns.map((col) => (
