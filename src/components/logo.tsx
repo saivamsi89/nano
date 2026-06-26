@@ -1,16 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 import { LogoMark } from "@/components/logo-mark";
 import { cn } from "@/lib/utils";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 /**
- * NanoFab lockup: the "N" monogram + wordmark ("nano" navy/white, "fab" green).
- * `uid` keeps the mark's SVG gradient ids unique per instance on the page.
+ * NanoFab lockup using the official wordmark image (navy "nano" + green "fab").
+ * `variant="light"` swaps to the white-"nano" version for dark backgrounds.
+ * `showMark` optionally prefixes the "N" monogram.
  */
 export function Logo({
   className,
   variant = "dark",
   uid = "nf",
-  showMark = true,
+  showMark = false,
 }: {
   className?: string;
   variant?: "dark" | "light";
@@ -29,12 +33,14 @@ export function Logo({
           className="h-8 w-8 transition-transform duration-300 group-hover:scale-105"
         />
       )}
-      <span className="font-display text-2xl font-extrabold tracking-tight lowercase">
-        <span className={variant === "light" ? "text-white" : "text-ink-900"}>
-          nano
-        </span>
-        <span className="text-brand-500">fab</span>
-      </span>
+      <Image
+        src={`${BASE}/brand/${variant === "light" ? "logo-light" : "logo"}.png`}
+        alt="NanoFab"
+        width={163}
+        height={28}
+        priority
+        className="h-7 w-auto"
+      />
     </Link>
   );
 }
