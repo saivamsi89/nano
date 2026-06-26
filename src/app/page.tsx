@@ -383,24 +383,31 @@ function FinalCta() {
   return (
     <section className="pb-8">
       <Container>
-        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-500 to-brand-600 px-8 py-16 text-center sm:px-12 sm:py-20">
-          <div className="absolute inset-0 bg-grid opacity-20" />
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-ink-950 px-8 py-16 text-center sm:px-12 sm:py-24">
+          <div className="absolute inset-0 bg-grid-dark opacity-50" />
+          <div className="absolute left-1/2 top-[-6rem] h-72 w-[42rem] max-w-full -translate-x-1/2 rounded-full bg-brand-500/20 blur-[130px]" />
+          <div className="absolute -bottom-28 right-10 h-64 w-64 rounded-full bg-brand-700/20 blur-[120px]" />
           <div className="relative">
-            <h2 className="mx-auto max-w-2xl font-display text-3xl font-extrabold tracking-tight text-ink-950 sm:text-4xl md:text-5xl">
-              Your next board is one upload away.
+            <div className="flex justify-center">
+              <Eyebrow tone="dark">Ready when you are</Eyebrow>
+            </div>
+            <h2 className="mx-auto mt-6 max-w-2xl font-display text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl">
+              Your next board is one{" "}
+              <span className="text-brand-500">upload away.</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-ink-900/80">
-              Get an instant, transparent quote and put NanoFab&apos;s factory to work today.
+            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-200">
+              Get an instant, transparent quote and put NanoFab&apos;s factory to
+              work today.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <ButtonLink href="/quote" size="lg" variant="secondary">
+            <div className="mt-9 flex flex-wrap justify-center gap-3">
+              <ButtonLink href="/quote" size="lg">
                 Get instant quote <ArrowRight className="h-4 w-4" />
               </ButtonLink>
               <ButtonLink
                 href="/shop"
                 size="lg"
                 variant="outline"
-                className="border-ink-900/20 bg-white/30 text-ink-950 hover:bg-white/50"
+                className="border-white/20 text-white hover:border-white hover:bg-white/5"
               >
                 Explore the shop
               </ButtonLink>
