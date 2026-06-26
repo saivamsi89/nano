@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { CircuitBoard, Cpu, PackageSearch, CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
-import { ProductRender } from "@/components/product-render";
+import { FadeImage } from "@/components/ui/fade-image";
 import { CtaStrip } from "@/components/ui/cta-strip";
+
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   title: "Services — Fabrication, Assembly & Sourcing",
@@ -97,17 +99,19 @@ export default function ServicesPage() {
                 </ul>
               </div>
               <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink-100 bg-[#f7faf9] shadow-lift">
-                  <ProductRender
-                    category={
-                      s.id === "fabrication"
-                        ? "PCB Kit"
-                        : s.id === "assembly"
-                        ? "Dev Board"
-                        : "Module"
-                    }
-                    id={`svc-${s.id}`}
-                  />
+                <div className="relative">
+                  <div className="absolute -inset-5 rounded-[2.5rem] bg-brand-500/10 blur-3xl" />
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-ink-950 shadow-lift">
+                    <FadeImage
+                      src={`${BASE}/brand/services-${s.id}.jpg`}
+                      alt={`${s.title} at NanoFab`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
+                  </div>
                 </div>
               </div>
             </div>

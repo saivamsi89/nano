@@ -3,7 +3,9 @@ import { Mail, MapPin, Target, Eye, Gauge } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ProductRender } from "@/components/product-render";
+import { FadeImage } from "@/components/ui/fade-image";
+
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   title: "About NanoFab",
@@ -57,8 +59,18 @@ export default function AboutPage() {
               ))}
             </dl>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink-100 bg-[#f7faf9] shadow-lift">
-            <ProductRender category="Dev Board" id="about-board" />
+          <div className="relative">
+            <div className="absolute -inset-5 rounded-[2.5rem] bg-brand-500/10 blur-3xl" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-ink-950 shadow-lift">
+              <FadeImage
+                src={`${BASE}/brand/about.jpg`}
+                alt="NanoFab engineering workspace"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
+            </div>
           </div>
         </div>
 
