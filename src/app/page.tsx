@@ -30,7 +30,6 @@ export default function HomePage() {
       <TrustBar />
       <Services />
       <FeaturedBoards />
-      <StatsBand />
       <Capabilities />
       <CertStrip />
       <Process />
@@ -221,7 +220,7 @@ function FeaturedBoards() {
           <SectionHeading
             eyebrow="In stock now"
             title="Boards & modules ready to ship"
-            description="Reference designs and dev boards engineered by NanoFab—populated, tested and dispatched from Bengaluru."
+            description="Reference designs and dev boards engineered by NanoFab."
           />
           <ButtonLink href="/shop" variant="outline">
             View all products <ArrowRight className="h-4 w-4" />
@@ -230,41 +229,6 @@ function FeaturedBoards() {
         <Reveal className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.slice(0, 4).map((p) => (
             <BoardCard key={p.slug} product={p} />
-          ))}
-        </Reveal>
-      </Container>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------ Stats band */
-function StatsBand() {
-  const stats = [
-    { value: 12000, suffix: "+", label: "Boards delivered" },
-    { value: 600, suffix: "+", label: "Hardware teams served" },
-    { value: 22, suffix: "", label: "Max layer count" },
-    { value: 99.2, decimals: 1, suffix: "%", label: "First-pass yield" },
-  ];
-  return (
-    <section className="relative overflow-hidden bg-ink-950 py-16 text-white sm:py-20">
-      <div className="absolute inset-0 bg-grid-dark opacity-50" />
-      <div className="absolute left-1/2 top-1/2 h-72 w-[44rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-[130px]" />
-      <Container className="relative">
-        <Reveal className="grid grid-cols-2 gap-y-10 sm:gap-8 lg:grid-cols-4">
-          {stats.map((s) => (
-            <div
-              key={s.label}
-              className="text-center lg:border-l lg:border-white/10 lg:first:border-l-0"
-            >
-              <div className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                <CountUp
-                  value={s.value}
-                  decimals={s.decimals ?? 0}
-                  suffix={s.suffix}
-                />
-              </div>
-              <div className="mt-2 text-sm text-ink-300">{s.label}</div>
-            </div>
           ))}
         </Reveal>
       </Container>
