@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductImage } from "@/components/shop/product-image";
 import { cn } from "@/lib/utils";
 
 /**
- * LionCircuits-style card image carousel: cycles through several views of the
- * product photo (full + zoom crops) one after another while hovered, with dot
- * indicators. Falls back to the first view when not hovered.
+ * LionCircuits-style card image carousel: continuously cycles through several
+ * views of the product photo (full + zoom crops) with dot indicators. Each card
+ * starts at a random offset so the grid doesn't flip in sync. Honors
+ * prefers-reduced-motion.
  */
 const slides = [
   "", // full product
@@ -18,34 +19,31 @@ const slides = [
 
 export function CardCarousel({ slug, name }: { slug: string; name: string }) {
   const [i, setI] = useState(0);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const start = () => {
-    if (timer.current) return;
-    timer.current = setInterval(
-      () => setI((p) => (p + 1) % slides.length),
-      850
-    );
-  };
-  const stop = () => {
-    if (timer.current) clearInterval(timer.current);
-    timer.current = null;
-    setI(0);
-  };
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  useEffect(() => () => void (timer.current && clearInterval(timer.current)), []);
+    let interval: ReturnType<typeof setInterval>;
+    // stagger each card's start so they don't all change at once
+    const startDelay = setTimeout(() => {
+      interval = setInterval(() => {
+        setI((p) => (p + 1) % slides.length);
+      }, 2200);
+    }, Math.random() * 2000);
+
+    return () => {
+      clearTimeout(startDelay);
+      if (interval) clearInterval(interval);
+    };
+  }, []);
 
   return (
-    <div
-      className="absolute inset-0"
-      onMouseEnter={start}
-      onMouseLeave={stop}
-    >
+    <div className="absolute inset-0">
       {slides.map((s, idx) => (
         <div
           key={idx}
           className={cn(
-            "absolute inset-0 p-4 transition-opacity duration-300 ease-out",
+            "absolute inset-0 p-4 transition-opacity duration-500 ease-out",
             idx === i ? "opacity-100" : "opacity-0"
           )}
         >
