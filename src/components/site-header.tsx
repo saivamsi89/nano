@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { ButtonLink } from "@/components/ui/button";
@@ -18,11 +18,31 @@ const nav = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const count = useCart((s) => s.items.reduce((n, i) => n + i.qty, 0));
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300",
+        scrolled
+          ? "border-ink-100 bg-white/90 shadow-[0_4px_24px_-12px_rgba(11,11,35,0.18)]"
+          : "border-transparent bg-white/70"
+      )}
+    >
+      <div
+        className={cn(
+          "mx-auto flex w-full max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-8",
+          scrolled ? "h-14" : "h-16"
+        )}
+      >
         <Logo showMark={false} />
 
         <nav className="hidden items-center gap-1 lg:flex">

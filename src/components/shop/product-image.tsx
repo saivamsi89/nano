@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { FadeImage } from "@/components/ui/fade-image";
 import { cn } from "@/lib/utils";
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -21,7 +21,7 @@ export function ProductImage({
   priority?: boolean;
 }) {
   return (
-    <Image
+    <FadeImage
       src={`${BASE}/products/${slug}.png`}
       alt={alt}
       fill
