@@ -51,7 +51,7 @@ export function SectionHeading({
       {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
       <h2
         className={cn(
-          "font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-[2.6rem] md:leading-[1.1]",
+          "text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-[2.6rem] md:leading-[1.1]",
           tone === "dark" ? "text-white" : "text-ink-900"
         )}
       >
@@ -60,7 +60,7 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed sm:text-lg",
+            "max-w-2xl text-pretty text-base leading-relaxed sm:text-lg",
             tone === "dark" ? "text-ink-200" : "text-ink-500",
             align === "center" && "mx-auto"
           )}

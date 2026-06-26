@@ -12,6 +12,7 @@ import {
   Star,
   Quote,
   ChevronDown,
+  BadgeCheck,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
@@ -31,6 +32,7 @@ export default function HomePage() {
       <FeaturedBoards />
       <StatsBand />
       <Capabilities />
+      <CertStrip />
       <Process />
       <Testimonials />
       <FinalCta />
@@ -335,6 +337,40 @@ function Capabilities() {
   );
 }
 
+/* ----------------------------------------------------------- Cert strip */
+function CertStrip() {
+  const certs = [
+    { name: "ISO 9001:2015", sub: "Quality mgmt" },
+    { name: "IPC-A-600", sub: "Board acceptance" },
+    { name: "IPC-A-610", sub: "Assembly class 2 & 3" },
+    { name: "RoHS", sub: "Compliant" },
+    { name: "REACH", sub: "Compliant" },
+    { name: "UL 94V-0", sub: "Flammability" },
+  ];
+  return (
+    <section className="border-y border-ink-100 bg-white py-14">
+      <Container>
+        <p className="text-center text-xs font-medium uppercase tracking-[0.18em] text-ink-400">
+          Certified &amp; compliant to global standards
+        </p>
+        <Reveal className="mt-9 grid grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-6">
+          {certs.map((c) => (
+            <div key={c.name} className="flex flex-col items-center gap-2.5 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-ink-200 bg-ink-50 text-brand-600 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-card">
+                <BadgeCheck className="h-7 w-7" />
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-ink-800">{c.name}</div>
+                <div className="text-[11px] text-ink-400">{c.sub}</div>
+              </div>
+            </div>
+          ))}
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
+
 /* -------------------------------------------------------------- Process */
 function Process() {
   const steps = [
@@ -417,9 +453,20 @@ function Testimonials() {
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink-700">
                 “{t.q}”
               </blockquote>
-              <figcaption className="mt-6 border-t border-ink-100 pt-4">
-                <div className="font-display font-semibold text-ink-900">{t.a}</div>
-                <div className="text-sm text-ink-500">{t.r}</div>
+              <figcaption className="mt-6 flex items-center gap-3 border-t border-ink-100 pt-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-ink-900 to-ink-700 font-display text-sm font-bold text-brand-400">
+                  {t.a
+                    .split(" ")
+                    .map((w) => w[0])
+                    .join("")
+                    .slice(0, 2)}
+                </div>
+                <div>
+                  <div className="font-display font-semibold text-ink-900">
+                    {t.a}
+                  </div>
+                  <div className="text-sm text-ink-500">{t.r}</div>
+                </div>
               </figcaption>
             </figure>
           ))}

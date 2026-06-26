@@ -36,12 +36,28 @@ export const metadata: Metadata = {
     "electronic components",
     "NanoFab",
   ],
-  metadataBase: new URL("https://nanofab.example"),
+  metadataBase: new URL("https://saivamsi89.github.io/nano/"),
   openGraph: {
     title: "NanoFab — Precision PCB Fabrication & Assembly",
     description:
       "Instant quotes, 2–22 layer boards, automated assembly and same-day components. Built for hardware teams.",
     type: "website",
+    siteName: "NanoFab",
+    images: [
+      {
+        url: "https://saivamsi89.github.io/nano/og.png",
+        width: 1200,
+        height: 630,
+        alt: "NanoFab — Precision PCB Fabrication, Assembly & Components",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NanoFab — Precision PCB Fabrication & Assembly",
+    description:
+      "Instant quotes, 2–22 layer boards, automated assembly and same-day components.",
+    images: ["https://saivamsi89.github.io/nano/og.png"],
   },
 };
 
