@@ -29,6 +29,7 @@ export default function HomePage() {
       <TrustBar />
       <Services />
       <FeaturedBoards />
+      <StatsBand />
       <Capabilities />
       <Process />
       <Testimonials />
@@ -234,6 +235,41 @@ function FeaturedBoards() {
   );
 }
 
+/* ------------------------------------------------------------ Stats band */
+function StatsBand() {
+  const stats = [
+    { value: 12000, suffix: "+", label: "Boards delivered" },
+    { value: 600, suffix: "+", label: "Hardware teams served" },
+    { value: 22, suffix: "", label: "Max layer count" },
+    { value: 99.2, decimals: 1, suffix: "%", label: "First-pass yield" },
+  ];
+  return (
+    <section className="relative overflow-hidden bg-ink-950 py-16 text-white sm:py-20">
+      <div className="absolute inset-0 bg-grid-dark opacity-50" />
+      <div className="absolute left-1/2 top-1/2 h-72 w-[44rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-[130px]" />
+      <Container className="relative">
+        <Reveal className="grid grid-cols-2 gap-y-10 sm:gap-8 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              className="text-center lg:border-l lg:border-white/10 lg:first:border-l-0"
+            >
+              <div className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                <CountUp
+                  value={s.value}
+                  decimals={s.decimals ?? 0}
+                  suffix={s.suffix}
+                />
+              </div>
+              <div className="mt-2 text-sm text-ink-300">{s.label}</div>
+            </div>
+          ))}
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
+
 /* --------------------------------------------------------- Capabilities */
 function Capabilities() {
   const stats = [
@@ -256,7 +292,7 @@ function Capabilities() {
               {stats.map((s) => (
                 <div
                   key={s.v}
-                  className="rounded-2xl border border-ink-100 bg-white p-5 shadow-card"
+                  className="rounded-2xl border border-ink-100 bg-white p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift"
                 >
                   <s.icon className="h-6 w-6 text-brand-600" />
                   <div className="mt-3 font-display text-2xl font-bold text-ink-900">
@@ -322,7 +358,7 @@ function Process() {
               {i < steps.length - 1 && (
                 <div className="absolute -right-3 top-12 z-10 hidden h-px w-6 bg-ink-200 md:block" />
               )}
-              <div className="relative flex h-full flex-col rounded-2xl border border-ink-100 bg-white p-6 shadow-card">
+              <div className="relative flex h-full flex-col rounded-2xl border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift">
                 <span className="font-display text-3xl font-extrabold text-brand-500">
                   {s.n}
                 </span>
@@ -370,7 +406,7 @@ function Testimonials() {
           {quotes.map((t) => (
             <figure
               key={t.a}
-              className="flex h-full flex-col rounded-2xl border border-ink-100 bg-white p-7 shadow-card"
+              className="flex h-full flex-col rounded-2xl border border-ink-100 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift"
             >
               <Quote className="h-7 w-7 text-brand-500" />
               <div className="mt-3 flex gap-0.5">
