@@ -19,7 +19,6 @@ const columns = [
       { label: "About NanoFab", href: "/about" },
       { label: "Capabilities", href: "/capabilities" },
       { label: "Industries", href: "/industries" },
-      { label: "Resources", href: "/resources" },
     ],
   },
   {

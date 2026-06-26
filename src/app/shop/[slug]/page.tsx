@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, CheckCircle2, ShieldCheck, Timer, Truck } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { ProductRender } from "@/components/product-render";
+import { ProductGallery } from "@/components/shop/product-gallery";
 import { AddToCart } from "@/components/shop/add-to-cart";
 import { BoardCard } from "@/components/shop/board-card";
 import { getProduct, products } from "@/lib/boards";
@@ -47,9 +47,7 @@ export default async function ProductPage({
         <div className="mt-8 grid gap-12 lg:grid-cols-2">
           {/* Visual */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink-100 bg-[#f7faf9] shadow-card">
-              <ProductRender category={product.category} id={product.slug} />
-            </div>
+            <ProductGallery category={product.category} id={product.slug} />
             <div className="mt-4 flex items-center gap-3 rounded-xl border border-ink-100 bg-white px-4 py-3 text-xs text-ink-500">
               <span className="font-mono font-medium text-brand-600">
                 {product.mpn}
