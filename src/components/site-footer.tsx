@@ -83,14 +83,32 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <Image
-              src={`${BASE}/brand/make-in-india.png`}
-              alt="Make in India"
-              width={600}
-              height={274}
-              className="h-9 w-auto opacity-90"
-            />
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+            {/* Make in India lockup */}
+            <div className="flex items-center gap-3">
+              <Image
+                src={`${BASE}/brand/lion.png`}
+                alt="Make in India lion"
+                width={600}
+                height={274}
+                className="h-9 w-auto opacity-95"
+              />
+              <div className="border-l border-white/15 pl-3">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-3.5 w-[3px] flex-col overflow-hidden rounded-full">
+                    <span className="flex-1 bg-[#FF9933]" />
+                    <span className="flex-1 bg-white" />
+                    <span className="flex-1 bg-[#138808]" />
+                  </span>
+                  <span className="font-display text-sm font-bold uppercase tracking-[0.14em] text-white">
+                    Make in India
+                  </span>
+                </div>
+                <div className="mt-0.5 text-[11px] text-ink-400">
+                  Designed &amp; manufactured in India
+                </div>
+              </div>
+            </div>
             <p className="text-xs text-ink-400">
               © {new Date().getFullYear()} Nano Fab Innovations Pvt. Ltd.
               <br className="hidden sm:block" /> All rights reserved.
