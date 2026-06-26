@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import { ProductRender } from "@/components/product-render";
+import { ProductImage } from "@/components/shop/product-image";
 import { cn } from "@/lib/utils";
 
 /**
  * Amazon-style product gallery: a large main image with hover-zoom and a
- * thumbnail strip that switches the active view. Each "view" is the same board
- * shown from a different angle / crop, so the set reads like real product shots.
+ * thumbnail strip that switches the active view. Uses a real photo when the
+ * product has one (with zoom crops as extra views), else the illustration.
  */
-const views = [
+const renderViews = [
   { key: "front", label: "Top view", transform: "" },
   {
     key: "angle",
@@ -21,23 +22,46 @@ const views = [
   { key: "macro", label: "Macro", transform: "scale-[1.8] origin-bottom-left" },
 ];
 
+const photoViews = [
+  { key: "full", label: "Product", transform: "" },
+  { key: "z1", label: "Detail", transform: "scale-150 origin-center" },
+  { key: "z2", label: "Top", transform: "scale-[1.7] origin-top" },
+  { key: "z3", label: "Connector", transform: "scale-[1.8] origin-bottom-right" },
+];
+
 export function ProductGallery({
   category,
   id,
+  name,
+  hasImage,
 }: {
   category: string;
   id: string;
+  name: string;
+  hasImage?: boolean;
 }) {
   const [active, setActive] = useState(0);
+  const views = hasImage ? photoViews : renderViews;
+  const surface = hasImage ? "bg-white" : "bg-[#f7faf9]";
+
+  const renderArt = (transform: string, pad?: boolean) => (
+    <div className={cn("absolute inset-0", pad && "p-6", transform)}>
+      {hasImage ? (
+        <div className="relative h-full w-full">
+          <ProductImage slug={id} alt={name} sizes="(max-width:1024px) 100vw, 50vw" priority />
+        </div>
+      ) : (
+        <ProductRender category={category} id={id} />
+      )}
+    </div>
+  );
 
   return (
     <div className="flex flex-col gap-4">
       {/* Main image */}
-      <div className="group relative aspect-square overflow-hidden rounded-3xl border border-ink-100 bg-[#f7faf9] shadow-card">
+      <div className={cn("group relative aspect-square overflow-hidden rounded-3xl border border-ink-100 shadow-card", surface)}>
         <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-110">
-          <div className={cn("absolute inset-0", views[active].transform)}>
-            <ProductRender category={category} id={id} />
-          </div>
+          {renderArt(views[active].transform, hasImage)}
         </div>
         <span className="absolute left-4 top-4 rounded-md bg-white/90 px-2.5 py-1 text-[11px] font-medium text-ink-500 ring-1 ring-ink-100 backdrop-blur-sm">
           {views[active].label}
@@ -57,15 +81,14 @@ export function ProductGallery({
             onClick={() => setActive(i)}
             aria-label={v.label}
             className={cn(
-              "relative aspect-square overflow-hidden rounded-xl border bg-[#f7faf9] transition-all",
+              "relative aspect-square overflow-hidden rounded-xl border transition-all",
+              surface,
               active === i
                 ? "border-brand-500 ring-2 ring-brand-100"
                 : "border-ink-100 hover:border-ink-300"
             )}
           >
-            <div className={cn("absolute inset-0", v.transform)}>
-              <ProductRender category={category} id={id} />
-            </div>
+            {renderArt(v.transform, hasImage)}
           </button>
         ))}
       </div>

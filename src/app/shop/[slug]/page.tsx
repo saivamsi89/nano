@@ -47,7 +47,12 @@ export default async function ProductPage({
         <div className="mt-8 grid gap-12 lg:grid-cols-2">
           {/* Visual */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <ProductGallery category={product.category} id={product.slug} />
+            <ProductGallery
+              category={product.category}
+              id={product.slug}
+              name={product.name}
+              hasImage={product.image}
+            />
             <div className="mt-4 flex items-center gap-3 rounded-xl border border-ink-100 bg-white px-4 py-3 text-xs text-ink-500">
               <span className="font-mono font-medium text-brand-600">
                 {product.mpn}

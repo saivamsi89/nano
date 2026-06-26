@@ -13,6 +13,8 @@ export type Product = {
   badge?: string;
   seed: number;
   tone: Tone;
+  /** true → a real photo exists at /public/products/<slug>.png (else use illustration) */
+  image?: boolean;
   specs: { label: string; value: string }[];
 };
 
@@ -30,6 +32,7 @@ export const products: Product[] = [
     badge: "Best seller",
     seed: 7,
     tone: "green",
+    image: true,
     specs: [
       { label: "MCU", value: "RP2040 @ 133MHz" },
       { label: "Flash", value: "4 MB" },
@@ -68,6 +71,7 @@ export const products: Product[] = [
     badge: "New",
     seed: 41,
     tone: "slate",
+    image: true,
     specs: [
       { label: "Sensors", value: "Accel + Gyro + Mag" },
       { label: "Interface", value: "I²C / SPI" },
