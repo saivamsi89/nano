@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { Timer, Truck, FileUp, BadgeCheck, ArrowRight } from "lucide-react";
-import { PcbGraphic } from "@/components/pcb-graphic";
+
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 import {
   computeQuote,
   defaultConfig,
@@ -192,10 +194,14 @@ export function QuoteCalculator() {
       <div className="lg:sticky lg:top-24 lg:self-start">
         <div className="overflow-hidden rounded-3xl border border-ink-100 bg-ink-950 text-white shadow-lift">
           <div className="relative h-40 overflow-hidden">
-            <PcbGraphic
-              seed={c.layers * 7 + c.quantity}
-              tone={c.color === "green" ? "green" : c.color === "black" ? "navy" : "slate"}
+            <Image
+              src={`${BASE}/brand/capabilities.webp`}
+              alt="Printed circuit board"
+              fill
+              sizes="(max-width: 1024px) 100vw, 420px"
+              className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent" />
           </div>
 
           <div className="p-6">

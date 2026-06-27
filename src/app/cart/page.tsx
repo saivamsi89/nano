@@ -5,8 +5,7 @@ import Link from "next/link";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, FileText } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
-import { ProductRender } from "@/components/product-render";
-import { products } from "@/lib/boards";
+import { ProductImage } from "@/components/shop/product-image";
 import { useCart } from "@/lib/cart-store";
 
 export default function CartPage() {
@@ -82,15 +81,11 @@ export default function CartPage() {
             <div key={item.slug} className="flex gap-4 p-5">
               <Link
                 href={`/shop/${item.slug}`}
-                className="relative h-24 w-32 shrink-0 overflow-hidden rounded-xl border border-ink-100 bg-[#f7faf9]"
+                className="relative h-24 w-32 shrink-0 overflow-hidden rounded-xl border border-ink-100 bg-white p-2"
               >
-                <ProductRender
-                  category={
-                    products.find((p) => p.slug === item.slug)?.category ??
-                    "Module"
-                  }
-                  id={item.slug}
-                />
+                <div className="relative h-full w-full">
+                  <ProductImage slug={item.slug} alt={item.name} sizes="128px" />
+                </div>
               </Link>
 
               <div className="flex flex-1 flex-col">
