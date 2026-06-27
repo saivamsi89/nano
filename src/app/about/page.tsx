@@ -20,7 +20,7 @@ const values = [
 ];
 
 const stats = [
-  { k: "Amaravati", v: "Engineered in" },
+  { k: "Amaravathi", v: "Engineered in" },
   { k: "12,000+", v: "Boards delivered" },
   { k: "600+", v: "Hardware teams served" },
   { k: "18", v: "Countries shipped to" },

@@ -43,7 +43,7 @@ export function SiteFooter() {
             <Logo variant="light" uid="ftr" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">
               Precision PCB fabrication, assembly and component sourcing for
-              hardware teams. Your future, engineered in Amaravati.
+              hardware teams. Your future, engineered in Amaravathi.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
