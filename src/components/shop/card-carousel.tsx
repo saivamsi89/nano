@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ProductImage } from "@/components/shop/product-image";
 import { cn } from "@/lib/utils";
 
 /**
- * LionCircuits-style card image carousel: continuously cycles through several
- * views of the product photo (full + zoom crops) with dot indicators. Each card
- * starts at a random offset so the grid doesn't flip in sync. Honors
- * prefers-reduced-motion.
+ * Manual product-image carousel: the user clicks the arrows (or dots) to move
+ * between views of the product photo. No auto-scroll. Clicks are stopped from
+ * bubbling so they don't trigger the surrounding card link.
  */
 const slides = [
   "", // full product
@@ -20,22 +20,18 @@ const slides = [
 export function CardCarousel({ slug, name }: { slug: string; name: string }) {
   const [i, setI] = useState(0);
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let interval: ReturnType<typeof setInterval>;
-    // stagger each card's start so they don't all change at once
-    const startDelay = setTimeout(() => {
-      interval = setInterval(() => {
-        setI((p) => (p + 1) % slides.length);
-      }, 2200);
-    }, Math.random() * 2000);
-
-    return () => {
-      clearTimeout(startDelay);
-      if (interval) clearInterval(interval);
-    };
-  }, []);
+  const stop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  const go = (e: React.MouseEvent, dir: number) => {
+    stop(e);
+    setI((p) => (p + dir + slides.length) % slides.length);
+  };
+  const set = (e: React.MouseEvent, idx: number) => {
+    stop(e);
+    setI(idx);
+  };
 
   return (
     <div className="absolute inset-0">
@@ -43,7 +39,7 @@ export function CardCarousel({ slug, name }: { slug: string; name: string }) {
         <div
           key={idx}
           className={cn(
-            "absolute inset-0 p-4 transition-opacity duration-500 ease-out",
+            "absolute inset-0 p-4 transition-opacity duration-300 ease-out",
             idx === i ? "opacity-100" : "opacity-0"
           )}
         >
@@ -53,14 +49,35 @@ export function CardCarousel({ slug, name }: { slug: string; name: string }) {
         </div>
       ))}
 
-      {/* Dot indicators (LionCircuits style) */}
+      {/* Prev / Next arrows */}
+      <button
+        type="button"
+        onClick={(e) => go(e, -1)}
+        aria-label="Previous image"
+        className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-ink-700 shadow-sm ring-1 ring-ink-100 backdrop-blur transition-all hover:bg-white hover:text-ink-900 active:scale-95"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </button>
+      <button
+        type="button"
+        onClick={(e) => go(e, 1)}
+        aria-label="Next image"
+        className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-ink-700 shadow-sm ring-1 ring-ink-100 backdrop-blur transition-all hover:bg-white hover:text-ink-900 active:scale-95"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </button>
+
+      {/* Clickable dots */}
       <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
         {slides.map((_, idx) => (
-          <span
+          <button
             key={idx}
+            type="button"
+            onClick={(e) => set(e, idx)}
+            aria-label={`View ${idx + 1}`}
             className={cn(
               "h-1.5 rounded-full transition-all duration-300",
-              idx === i ? "w-4 bg-brand-500" : "w-1.5 bg-ink-300"
+              idx === i ? "w-4 bg-brand-500" : "w-1.5 bg-ink-300 hover:bg-ink-400"
             )}
           />
         ))}
