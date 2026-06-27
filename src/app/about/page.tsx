@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const inputCls =
-  "w-full rounded-xl border border-white/10 bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-ink-500 outline-none transition-all focus:border-brand-500 focus:bg-ink-950/60 focus:ring-2 focus:ring-brand-500/20";
+  "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-ink-500 outline-none transition-all focus:border-brand-500/70 focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-500/25";
 
 export const metadata: Metadata = {
   title: "About NanoFab",
@@ -109,7 +109,7 @@ export default function AboutPage() {
         <div className="absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-brand-500/10 blur-[120px]" />
         <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-brand-700/10 blur-[120px]" />
         <Container className="relative">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <SectionHeading
                 tone="dark"
@@ -120,34 +120,34 @@ export default function AboutPage() {
               <div className="mt-8 space-y-3">
                 <a
                   href="mailto:reachus@nanofab.in"
-                  className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-brand-500/40 hover:bg-white/[0.06]"
+                  className="group flex min-h-[5rem] items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] p-4 transition-all hover:border-brand-500/50 hover:bg-white/[0.08]"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-400 transition-colors group-hover:bg-brand-500 group-hover:text-ink-950">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 ring-1 ring-inset ring-brand-500/20 transition-colors group-hover:bg-brand-500 group-hover:text-ink-950">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-ink-400">Email us</div>
+                    <div className="text-xs uppercase tracking-wide text-ink-400">Email us</div>
                     <div className="font-medium text-white">reachus@nanofab.in</div>
                   </div>
                 </a>
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-400">
+                <div className="flex min-h-[5rem] items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] p-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 ring-1 ring-inset ring-brand-500/20">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-ink-400">Our facility</div>
+                    <div className="text-xs uppercase tracking-wide text-ink-400">Our facility</div>
                     <div className="text-sm font-medium leading-relaxed text-white">
                       Nano Fab Innovations Pvt. Ltd., Beside Co-operative Bank,
                       Main Road, Ajith Singh Nagar, Vijayawada 520015
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-400">
+                <div className="flex min-h-[5rem] items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] p-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 ring-1 ring-inset ring-brand-500/20">
                     <Clock className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-ink-400">Typical response</div>
+                    <div className="text-xs uppercase tracking-wide text-ink-400">Typical response</div>
                     <div className="font-medium text-white">
                       Within a few hours · Mon–Sat
                     </div>
@@ -156,7 +156,10 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <form className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.01] p-6 shadow-2xl backdrop-blur-sm sm:p-8">
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-[2.25rem] bg-brand-500/10 blur-3xl" />
+              <div className="relative rounded-[1.75rem] bg-gradient-to-br from-brand-500/40 via-white/15 to-white/[0.04] p-px shadow-2xl">
+                <form className="rounded-[1.7rem] bg-ink-900/85 p-6 backdrop-blur-xl sm:p-8">
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-1.5 block text-xs font-medium text-ink-300">
@@ -193,14 +196,16 @@ export default function AboutPage() {
               </div>
               <button
                 type="button"
-                className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-500 font-medium text-ink-950 transition-all hover:bg-brand-400 active:scale-[0.99] [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5"
+                className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-500 font-semibold text-ink-950 shadow-[0_12px_30px_-8px_rgba(34,197,94,0.6)] transition-all hover:bg-brand-400 hover:shadow-[0_16px_36px_-8px_rgba(34,197,94,0.75)] active:scale-[0.99] [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5"
               >
                 Send message <ArrowRight className="h-4 w-4" />
               </button>
               <p className="mt-3 text-center text-xs text-ink-500">
                 Demo form · wires to Resend / your CRM in production
               </p>
-            </form>
+                </form>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
