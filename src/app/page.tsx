@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   CircuitBoard,
@@ -18,6 +17,7 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading, Eyebrow } from "@/components/ui/section-heading";
 import { FadeImage } from "@/components/ui/fade-image";
+import { HeroMedia } from "@/components/hero-media";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { BoardCard } from "@/components/shop/board-card";
@@ -43,15 +43,8 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink-950 text-white">
-      {/* Full-bleed board photograph (shows immediately; subtle Ken-Burns drift) */}
-      <Image
-        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/hero/aurora-hero.jpg`}
-        alt="NanoFab AURORA advanced processor board in the lab"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-10 object-cover object-center motion-safe:animate-ken-burns"
-      />
+      {/* Full-bleed hero media — photo on mobile, glowing circuit video on desktop */}
+      <HeroMedia />
       {/* Legibility + brand grading overlays */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/30" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/70" />
