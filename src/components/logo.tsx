@@ -34,7 +34,7 @@ export function Logo({
         />
       )}
       <Image
-        src={`${BASE}/brand/${variant === "light" ? "logo-light" : "logo"}.png`}
+        src={`${BASE}/brand/${variant === "light" ? "logo-light" : "logo"}.webp`}
         alt="NanoFab"
         width={163}
         height={28}

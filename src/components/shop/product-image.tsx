@@ -22,7 +22,7 @@ export function ProductImage({
 }) {
   return (
     <FadeImage
-      src={`${BASE}/products/${slug}.png`}
+      src={`${BASE}/products/${slug}.webp`}
       alt={alt}
       fill
       sizes={sizes}

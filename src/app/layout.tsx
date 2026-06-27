@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "NanoFab",
     images: [
       {
-        url: "https://saivamsi89.github.io/nano/og.png",
+        url: "https://saivamsi89.github.io/nano/og.jpg",
         width: 1200,
         height: 630,
         alt: "NanoFab — Precision PCB Fabrication, Assembly & Components",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "NanoFab — Precision PCB Fabrication & Assembly",
     description:
       "Instant quotes, 2–22 layer boards, automated assembly and same-day components.",
-    images: ["https://saivamsi89.github.io/nano/og.png"],
+    images: ["https://saivamsi89.github.io/nano/og.jpg"],
   },
 };
 

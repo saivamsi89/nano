@@ -82,7 +82,7 @@ export function SiteFooter() {
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <Image
-              src={`${BASE}/brand/make-in-india.png`}
+              src={`${BASE}/brand/make-in-india.webp`}
               alt="Make in India"
               width={600}
               height={274}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   CircuitBoard,
@@ -17,7 +18,6 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading, Eyebrow } from "@/components/ui/section-heading";
 import { FadeImage } from "@/components/ui/fade-image";
-import { HeroMedia } from "@/components/hero-media";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { BoardCard } from "@/components/shop/board-card";
@@ -43,8 +43,15 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink-950 text-white">
-      {/* Full-bleed hero media — photo on mobile, glowing circuit video on desktop */}
-      <HeroMedia />
+      {/* Full-bleed board photograph with a subtle Ken-Burns drift */}
+      <Image
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/hero/aurora-hero.webp`}
+        alt="NanoFab AURORA advanced processor board in the lab"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-10 object-cover object-center motion-safe:animate-ken-burns"
+      />
       {/* Legibility + brand grading overlays */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/30" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/70" />
@@ -270,7 +277,7 @@ function Capabilities() {
             <div className="absolute -inset-6 rounded-[2.5rem] bg-brand-500/10 blur-3xl" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-ink-950 shadow-lift">
               <FadeImage
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/capabilities.jpg`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/capabilities.webp`}
                 alt="Inspected printed circuit board on a calibrated line"
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"

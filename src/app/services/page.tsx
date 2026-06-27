@@ -103,7 +103,7 @@ export default function ServicesPage() {
                   <div className="absolute -inset-5 rounded-[2.5rem] bg-brand-500/10 blur-3xl" />
                   <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-ink-950 shadow-lift">
                     <FadeImage
-                      src={`${BASE}/brand/services-${s.id}.jpg`}
+                      src={`${BASE}/brand/services-${s.id}.webp`}
                       alt={`${s.title} at NanoFab`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"

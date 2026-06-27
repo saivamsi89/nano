@@ -63,7 +63,7 @@ export default function AboutPage() {
             <div className="absolute -inset-5 rounded-[2.5rem] bg-brand-500/10 blur-3xl" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-ink-950 shadow-lift">
               <FadeImage
-                src={`${BASE}/brand/about.jpg`}
+                src={`${BASE}/brand/about.webp`}
                 alt="NanoFab engineering workspace"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
