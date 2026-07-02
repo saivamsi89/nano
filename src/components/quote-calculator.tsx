@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { Timer, Truck, FileUp, BadgeCheck, ArrowRight } from "lucide-react";
 
@@ -70,6 +70,18 @@ export function QuoteCalculator() {
   const [c, setC] = useState<QuoteConfig>(defaultConfig);
   const set = <K extends keyof QuoteConfig>(k: K, v: QuoteConfig[K]) =>
     setC((prev) => ({ ...prev, [k]: v }));
+
+  // Pick up a selection handed off from the hero quote widget (?layers=&qty=)
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const layers = Number(p.get("layers"));
+    const qty = Number(p.get("qty"));
+    setC((prev) => ({
+      ...prev,
+      ...(layerOptions.includes(layers) ? { layers } : {}),
+      ...(qty >= 1 ? { quantity: Math.floor(qty) } : {}),
+    }));
+  }, []);
 
   const result = useMemo(() => computeQuote(c), [c]);
 

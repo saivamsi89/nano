@@ -18,10 +18,12 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading, Eyebrow } from "@/components/ui/section-heading";
 import { FadeImage } from "@/components/ui/fade-image";
+import { HeroQuoteWidget } from "@/components/hero-quote-widget";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { BoardCard } from "@/components/shop/board-card";
 import { products } from "@/lib/boards";
+import { formatINR } from "@/lib/utils";
 
 export default function HomePage() {
   return (
@@ -29,6 +31,7 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <Services />
+      <BoardTypes />
       <FeaturedBoards />
       <Capabilities />
       <CertStrip />
@@ -58,7 +61,8 @@ function Hero() {
       <div className="absolute inset-0 -z-10 bg-ink-950/40 lg:bg-transparent" />
       <div className="absolute -right-32 top-1/4 -z-10 h-[420px] w-[420px] rounded-full bg-brand-500/15 blur-[120px]" />
 
-      <Container className="relative py-24 sm:py-28 lg:py-36">
+      <Container className="relative py-24 sm:py-28 lg:py-32">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_auto]">
         <div className="max-w-2xl">
           <Eyebrow tone="dark">India&apos;s precision PCB partner</Eyebrow>
           <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
@@ -103,6 +107,12 @@ function Hero() {
               </div>
             ))}
           </dl>
+        </div>
+
+        {/* JLC-style embedded instant quote */}
+        <div className="flex justify-center lg:justify-end">
+          <HeroQuoteWidget />
+        </div>
         </div>
       </Container>
 
@@ -204,6 +214,108 @@ function Services() {
                 Learn more <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
+          ))}
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------ Board types */
+function BoardTypes() {
+  const types = [
+    {
+      name: "FR-4 Standard",
+      desc: "The workhorse — rigid boards for products, prototypes and everything between.",
+      price: 799,
+      unit: "5 pcs",
+      days: "5–6 days",
+      img: "services-fabrication",
+      badge: "Most popular",
+    },
+    {
+      name: "Flexible PCB",
+      desc: "Bend, fold and fit — polyimide flex circuits for wearables and tight enclosures.",
+      price: 2499,
+      unit: "5 pcs",
+      days: "7–8 days",
+      img: "capabilities",
+    },
+    {
+      name: "Metal Core (MCPCB)",
+      desc: "Aluminium-core boards that pull heat away from LEDs and power stages.",
+      price: 1899,
+      unit: "5 pcs",
+      days: "6–7 days",
+      img: "services-sourcing",
+    },
+    {
+      name: "High-Frequency",
+      desc: "Rogers & PTFE laminates for RF, radar and antenna designs that can't compromise.",
+      price: 3499,
+      unit: "5 pcs",
+      days: "8–10 days",
+      img: "services-assembly",
+    },
+  ];
+  return (
+    <section className="bg-ink-50 py-20 sm:py-24">
+      <Container>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="Transparent pricing"
+            title="Every board type, priced up front"
+            description="No sales calls to get a number. Pick your build, see the starting price and lead time, and configure the rest in the quote tool."
+          />
+          <ButtonLink href="/quote" variant="outline">
+            Open quote tool <ArrowRight className="h-4 w-4" />
+          </ButtonLink>
+        </div>
+        <Reveal className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {types.map((t) => (
+            <Link
+              key={t.name}
+              href="/quote"
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift"
+            >
+              <div className="relative h-36 overflow-hidden bg-ink-950">
+                <FadeImage
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/${t.img}.webp`}
+                  alt={`${t.name} printed circuit board`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/20 to-transparent" />
+                {t.badge && (
+                  <span className="absolute left-3 top-3 rounded-md bg-brand-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-ink-950">
+                    {t.badge}
+                  </span>
+                )}
+                <span className="absolute bottom-3 left-4 font-display text-lg font-bold text-white">
+                  {t.name}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <p className="text-sm leading-relaxed text-ink-500">{t.desc}</p>
+                <div className="mt-auto flex items-end justify-between border-t border-ink-100 pt-4">
+                  <div>
+                    <div className="text-[11px] uppercase tracking-wide text-ink-400">
+                      From
+                    </div>
+                    <div className="font-display text-xl font-bold text-ink-900">
+                      {formatINR(t.price)}
+                      <span className="ml-1 text-xs font-medium text-ink-400">
+                        / {t.unit}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 pb-0.5 text-xs font-medium text-brand-700">
+                    <Timer className="h-3.5 w-3.5" /> {t.days}
+                  </div>
+                </div>
+              </div>
+            </Link>
           ))}
         </Reveal>
       </Container>
